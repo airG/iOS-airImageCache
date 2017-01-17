@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7406AB761D47F16900620D1C /* airGiOSTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7406AB6B1D47F16900620D1C /* airGiOSTools.framework */; };
+		7406AB7B1D47F16900620D1C /* airgiOSToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7406AB7A1D47F16900620D1C /* airgiOSToolsTests.swift */; };
+		7413E9DD1E0354BA00331102 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413E9DC1E0354BA00331102 /* Button.swift */; };
+		741483F01E2E93A7008C4800 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741483EF1E2E93A7008C4800 /* Image.swift */; };
+		744627B91E0C97E700C8B79B /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744627B81E0C97E700C8B79B /* Functions.swift */; };
+		744627BB1E0C97F200C8B79B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744627BA1E0C97F200C8B79B /* Result.swift */; };
+		744627BD1E0C97FC00C8B79B /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744627BC1E0C97FC00C8B79B /* CollectionView.swift */; };
+		744627BF1E0C980100C8B79B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744627BE1E0C980100C8B79B /* Device.swift */; };
+		744627C11E0C980C00C8B79B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744627C01E0C980C00C8B79B /* Logging.swift */; };
+		74DE0F721DF5F3CE00A91638 /* airgiOSTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DE0F711DF5F3CE00A91638 /* airgiOSTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74DE0F751DF5F3E000A91638 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F731DF5F3E000A91638 /* Array.swift */; };
+		74DE0F761DF5F3E000A91638 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F741DF5F3E000A91638 /* Dictionary.swift */; };
+		74DE0F7E1DF5F3ED00A91638 /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F771DF5F3ED00A91638 /* AutoLayout.swift */; };
+		74DE0F7F1DF5F3ED00A91638 /* Designables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F781DF5F3ED00A91638 /* Designables.swift */; };
+		74DE0F801DF5F3ED00A91638 /* IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F791DF5F3ED00A91638 /* IndexPath.swift */; };
+		74DE0F811DF5F3ED00A91638 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F7A1DF5F3ED00A91638 /* TableView.swift */; };
+		74DE0F821DF5F3ED00A91638 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F7B1DF5F3ED00A91638 /* View.swift */; };
+		74DE0F831DF5F3ED00A91638 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F7C1DF5F3ED00A91638 /* ViewController.swift */; };
+		74DE0F841DF5F3ED00A91638 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F7D1DF5F3ED00A91638 /* Window.swift */; };
+		74DE0F861DF5F3FA00A91638 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE0F851DF5F3FA00A91638 /* String.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7406AB771D47F16900620D1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7406AB621D47F16800620D1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7406AB6A1D47F16900620D1C;
+			remoteInfo = "airG-iOS-Tools";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7406AB6B1D47F16900620D1C /* airGiOSTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = airGiOSTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7406AB751D47F16900620D1C /* airgiOSToolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = airgiOSToolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7406AB7A1D47F16900620D1C /* airgiOSToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = airgiOSToolsTests.swift; sourceTree = "<group>"; };
+		7406AB7C1D47F16900620D1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7413E9DC1E0354BA00331102 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = airgiOSTools/Button.swift; sourceTree = SOURCE_ROOT; };
+		741483EF1E2E93A7008C4800 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = airgiOSTools/Image.swift; sourceTree = SOURCE_ROOT; };
+		744627B81E0C97E700C8B79B /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Functions.swift; path = airgiOSTools/Functions.swift; sourceTree = SOURCE_ROOT; };
+		744627BA1E0C97F200C8B79B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = airgiOSTools/Result.swift; sourceTree = SOURCE_ROOT; };
+		744627BC1E0C97FC00C8B79B /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionView.swift; path = airgiOSTools/CollectionView.swift; sourceTree = SOURCE_ROOT; };
+		744627BE1E0C980100C8B79B /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Device.swift; path = airgiOSTools/Device.swift; sourceTree = SOURCE_ROOT; };
+		744627C01E0C980C00C8B79B /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = airgiOSTools/Logging.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F711DF5F3CE00A91638 /* airgiOSTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = airgiOSTools.h; path = airgiOSTools/airgiOSTools.h; sourceTree = SOURCE_ROOT; };
+		74DE0F731DF5F3E000A91638 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array.swift; path = airgiOSTools/Array.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F741DF5F3E000A91638 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = airgiOSTools/Dictionary.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F771DF5F3ED00A91638 /* AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoLayout.swift; path = airgiOSTools/AutoLayout.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F781DF5F3ED00A91638 /* Designables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Designables.swift; path = airgiOSTools/Designables.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F791DF5F3ED00A91638 /* IndexPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndexPath.swift; path = airgiOSTools/IndexPath.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F7A1DF5F3ED00A91638 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableView.swift; path = airgiOSTools/TableView.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F7B1DF5F3ED00A91638 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = View.swift; path = airgiOSTools/View.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F7C1DF5F3ED00A91638 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = airgiOSTools/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F7D1DF5F3ED00A91638 /* Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Window.swift; path = airgiOSTools/Window.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F851DF5F3FA00A91638 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = airgiOSTools/String.swift; sourceTree = SOURCE_ROOT; };
+		74DE0F871DF5F3FF00A91638 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = airgiOSTools/Info.plist; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7406AB671D47F16900620D1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7406AB721D47F16900620D1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7406AB761D47F16900620D1C /* airGiOSTools.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7406AB611D47F16800620D1C = {
+			isa = PBXGroup;
+			children = (
+				7406AB6D1D47F16900620D1C /* airgiOSTools */,
+				7406AB791D47F16900620D1C /* airG-iOS-ToolsTests */,
+				7406AB6C1D47F16900620D1C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7406AB6C1D47F16900620D1C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7406AB6B1D47F16900620D1C /* airGiOSTools.framework */,
+				7406AB751D47F16900620D1C /* airgiOSToolsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7406AB6D1D47F16900620D1C /* airgiOSTools */ = {
+			isa = PBXGroup;
+			children = (
+				74DE0F711DF5F3CE00A91638 /* airgiOSTools.h */,
+				7476121C1D9C352700F17FC0 /* Swift */,
+				7476121B1D9C351B00F17FC0 /* UIKit */,
+				744627C01E0C980C00C8B79B /* Logging.swift */,
+				74DE0F871DF5F3FF00A91638 /* Info.plist */,
+			);
+			name = airgiOSTools;
+			path = "airG-iOS-Tools";
+			sourceTree = "<group>";
+		};
+		7406AB791D47F16900620D1C /* airG-iOS-ToolsTests */ = {
+			isa = PBXGroup;
+			children = (
+				7406AB7A1D47F16900620D1C /* airgiOSToolsTests.swift */,
+				7406AB7C1D47F16900620D1C /* Info.plist */,
+			);
+			path = "airG-iOS-ToolsTests";
+			sourceTree = "<group>";
+		};
+		7476121B1D9C351B00F17FC0 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				74DE0F771DF5F3ED00A91638 /* AutoLayout.swift */,
+				7413E9DC1E0354BA00331102 /* Button.swift */,
+				744627BC1E0C97FC00C8B79B /* CollectionView.swift */,
+				74DE0F781DF5F3ED00A91638 /* Designables.swift */,
+				744627BE1E0C980100C8B79B /* Device.swift */,
+				74DE0F791DF5F3ED00A91638 /* IndexPath.swift */,
+				74DE0F7A1DF5F3ED00A91638 /* TableView.swift */,
+				741483EF1E2E93A7008C4800 /* Image.swift */,
+				74DE0F7B1DF5F3ED00A91638 /* View.swift */,
+				74DE0F7C1DF5F3ED00A91638 /* ViewController.swift */,
+				74DE0F7D1DF5F3ED00A91638 /* Window.swift */,
+			);
+			name = UIKit;
+			sourceTree = "<group>";
+		};
+		7476121C1D9C352700F17FC0 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				74DE0F731DF5F3E000A91638 /* Array.swift */,
+				74DE0F741DF5F3E000A91638 /* Dictionary.swift */,
+				744627B81E0C97E700C8B79B /* Functions.swift */,
+				744627BA1E0C97F200C8B79B /* Result.swift */,
+				74DE0F851DF5F3FA00A91638 /* String.swift */,
+			);
+			name = Swift;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7406AB681D47F16900620D1C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74DE0F721DF5F3CE00A91638 /* airgiOSTools.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7406AB6A1D47F16900620D1C /* airgiOSTools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7406AB7F1D47F16900620D1C /* Build configuration list for PBXNativeTarget "airgiOSTools" */;
+			buildPhases = (
+				7406AB661D47F16900620D1C /* Sources */,
+				7406AB671D47F16900620D1C /* Frameworks */,
+				7406AB681D47F16900620D1C /* Headers */,
+				7406AB691D47F16900620D1C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = airgiOSTools;
+			productName = "airG-iOS-Tools";
+			productReference = 7406AB6B1D47F16900620D1C /* airGiOSTools.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7406AB741D47F16900620D1C /* airgiOSToolsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7406AB821D47F16900620D1C /* Build configuration list for PBXNativeTarget "airgiOSToolsTests" */;
+			buildPhases = (
+				7406AB711D47F16900620D1C /* Sources */,
+				7406AB721D47F16900620D1C /* Frameworks */,
+				7406AB731D47F16900620D1C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7406AB781D47F16900620D1C /* PBXTargetDependency */,
+			);
+			name = airgiOSToolsTests;
+			productName = "airG-iOS-ToolsTests";
+			productReference = 7406AB751D47F16900620D1C /* airgiOSToolsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7406AB621D47F16800620D1C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = airg;
+				TargetAttributes = {
+					7406AB6A1D47F16900620D1C = {
+						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
+					};
+					7406AB741D47F16900620D1C = {
+						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
+					};
+				};
+			};
+			buildConfigurationList = 7406AB651D47F16800620D1C /* Build configuration list for PBXProject "airgiOSTools" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7406AB611D47F16800620D1C;
+			productRefGroup = 7406AB6C1D47F16900620D1C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7406AB6A1D47F16900620D1C /* airgiOSTools */,
+				7406AB741D47F16900620D1C /* airgiOSToolsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7406AB691D47F16900620D1C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7406AB731D47F16900620D1C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7406AB661D47F16900620D1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74DE0F7E1DF5F3ED00A91638 /* AutoLayout.swift in Sources */,
+				74DE0F861DF5F3FA00A91638 /* String.swift in Sources */,
+				74DE0F821DF5F3ED00A91638 /* View.swift in Sources */,
+				744627BF1E0C980100C8B79B /* Device.swift in Sources */,
+				744627C11E0C980C00C8B79B /* Logging.swift in Sources */,
+				74DE0F761DF5F3E000A91638 /* Dictionary.swift in Sources */,
+				7413E9DD1E0354BA00331102 /* Button.swift in Sources */,
+				74DE0F751DF5F3E000A91638 /* Array.swift in Sources */,
+				744627BD1E0C97FC00C8B79B /* CollectionView.swift in Sources */,
+				744627B91E0C97E700C8B79B /* Functions.swift in Sources */,
+				74DE0F831DF5F3ED00A91638 /* ViewController.swift in Sources */,
+				741483F01E2E93A7008C4800 /* Image.swift in Sources */,
+				74DE0F7F1DF5F3ED00A91638 /* Designables.swift in Sources */,
+				74DE0F811DF5F3ED00A91638 /* TableView.swift in Sources */,
+				744627BB1E0C97F200C8B79B /* Result.swift in Sources */,
+				74DE0F801DF5F3ED00A91638 /* IndexPath.swift in Sources */,
+				74DE0F841DF5F3ED00A91638 /* Window.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7406AB711D47F16900620D1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7406AB7B1D47F16900620D1C /* airgiOSToolsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7406AB781D47F16900620D1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7406AB6A1D47F16900620D1C /* airgiOSTools */;
+			targetProxy = 7406AB771D47F16900620D1C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7406AB7D1D47F16900620D1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7406AB7E1D47F16900620D1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7406AB801D47F16900620D1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/airgiOSTools/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = airg.airGiOSTools;
+				PRODUCT_NAME = airGiOSTools;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7406AB811D47F16900620D1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/airgiOSTools/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = airg.airGiOSTools;
+				PRODUCT_NAME = airGiOSTools;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		7406AB831D47F16900620D1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "airG-iOS-ToolsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "airg.airG-iOS-ToolsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		7406AB841D47F16900620D1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "airG-iOS-ToolsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "airg.airG-iOS-ToolsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7406AB651D47F16800620D1C /* Build configuration list for PBXProject "airgiOSTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7406AB7D1D47F16900620D1C /* Debug */,
+				7406AB7E1D47F16900620D1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7406AB7F1D47F16900620D1C /* Build configuration list for PBXNativeTarget "airgiOSTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7406AB801D47F16900620D1C /* Debug */,
+				7406AB811D47F16900620D1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7406AB821D47F16900620D1C /* Build configuration list for PBXNativeTarget "airgiOSToolsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7406AB831D47F16900620D1C /* Debug */,
+				7406AB841D47F16900620D1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7406AB621D47F16800620D1C /* Project object */;
+}
