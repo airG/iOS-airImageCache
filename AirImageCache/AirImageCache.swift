@@ -46,13 +46,13 @@ public struct AirImageCache {
     fileprivate let cache = NSCache<AnyObject, AnyObject>()
     fileprivate static let cacheDirectory: URL? = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
 
-    init() {
+    fileprivate init() {
         NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidReceiveMemoryWarning, object: self, queue: OperationQueue.current) { (note) in
             AirImageCache.purgeNSCache()
         }
     }
 
-    static func purgeNSCache() {
+    fileprivate static func purgeNSCache() {
         Log("Purging NSCache", level: .verbose)
         AirImageCache.shared.cache.removeAllObjects()
     }
