@@ -9,31 +9,57 @@
 import Foundation
 import airGiOSTools
 
-public struct ImageCache {
-    public static var shared = ImageCache()
-
-    fileprivate let cache = NSCache<AnyObject, AnyObject>()
-    fileprivate var myImageKeys: [String] = []
-
-    fileprivate static let cacheDirectory: URL? = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
-
-    //MARK:- Retrieving
-    static func image(forUsername username: String, size: CGSize) -> UIImage? {
-        return image(forKey: key(forUsername: username, size: size))
-    }
-
-    static func image(forFile file: String, folder: String) -> UIImage? {
-        return image(forKey: key(forFile: file, folder: folder))
-    }
-
-    static func image(forGiftID giftID: String, path: String) -> UIImage? {
-        return image(forKey: key(forGiftID: giftID, path: path))
-    }
-
-    fileprivate static func image(forKey key: String) -> UIImage? {
-        if let image = ImageCache.shared.cache.object(forKey: key as NSString) as? UIImage {
+/// ImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
+/// Uses an NSCache, which operates on a
+public struct AirImageCache {
+    //MARK: Interface
+    /// Checks all cache locations for a UIImage matching the `key`.
+    ///
+    /// - Parameter key: Unique identifier for an image.
+    /// - Returns: UIImage if it exists, otherwise nil.
+    public static func image(forKey key: String) -> UIImage? {
+        if let image = inMemoryImage(forKey: key) {
+            Log("Got image for \(key) from in-memory cache", level: .verbose)
             return image
         } else if let image = fileSystemImage(forKey: key) {
+            inMemory(save: image, forKey: key) // If the image is in the filesystem but not NSCache, should add it for future retrievals
+            Log("Got image for \(key) from file system", level: .verbose)
+            return image
+        } else {
+            Log("No image for \(key) in ImageCache", level: .verbose)
+            return nil
+        }
+    }
+
+    /// Saves a provided image into the cache.
+    ///
+    /// - Parameters:
+    ///   - image: UIImage to save to the in memory cache and filesystem.
+    ///   - key: Unique identifier for an image.
+    public static func save(_ image: UIImage, forKey key: String) {
+        inMemory(save: image, forKey: key)
+        fileSystem(save: image, forKey: key)
+    }
+
+    //MARK: Properties
+    fileprivate static var shared = AirImageCache()
+    fileprivate let cache = NSCache<AnyObject, AnyObject>()
+    fileprivate static let cacheDirectory: URL? = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+
+    init() {
+        NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidReceiveMemoryWarning, object: self, queue: OperationQueue.current) { (note) in
+            AirImageCache.purgeNSCache()
+        }
+    }
+
+    static func purgeNSCache() {
+        Log("Purging NSCache", level: .verbose)
+        AirImageCache.shared.cache.removeAllObjects()
+    }
+
+    //MARK:- Retrieving
+    fileprivate static func inMemoryImage(forKey key: String) -> UIImage? {
+        if let image = AirImageCache.shared.cache.object(forKey: key as NSString) as? UIImage {
             return image
         } else {
             return nil
@@ -51,51 +77,28 @@ public struct ImageCache {
     }
 
     //MARK:- Saving
-    fileprivate static func save(_ image: UIImage, forKey key: String) {
-        ImageCache.shared.cache.setObject(image, forKey: key as AnyObject)
-        fileSystem(save: image, forKey: key)
+    fileprivate static func inMemory(save image: UIImage, forKey key: String) {
+        AirImageCache.shared.cache.setObject(image, forKey: key as AnyObject)
     }
 
-    fileprivate static func fileSystem(save image: UIImage, forKey key: String) {
+    @discardableResult fileprivate static func fileSystem(save image: UIImage, forKey key: String) -> Bool {
         if let jpeg = UIImageJPEGRepresentation(image, 1.0), let path = filepath(forKey: key) {
-            try? jpeg.write(to: URL(fileURLWithPath: path), options: [.atomic])
+            do {
+                try jpeg.write(to: URL(fileURLWithPath: path), options: [.atomic])
+                return true
+            } catch {
+                Log("Error saving image to filesystem for \(key) - \(error)")
+            }
         }
+        return false
     }
 
     //MARK:- Keys
-    fileprivate static func key(forUsername username: String, size: CGSize) -> String {
-        return username + "-" + String(describing: size.width) + "-" + String(describing: size.height)
-    }
-
-    fileprivate static func key(forFile file: String, folder: String) -> String {
-        return file + "-" + folder
-    }
-
-    fileprivate static func key(forGiftID giftID: String, path: String) -> String {
-        return giftID + "-" + path
-    }
-
     fileprivate static func filepath(forKey key: String) -> String? {
         if let cacheDirectory = cacheDirectory {
             return "\(cacheDirectory)/\(key).jpg"
         }
         return nil
-    }
-
-    //MARK:- Purge
-    static func purgeMyImages() {
-        let fileManager = FileManager()
-        for key in ImageCache.shared.myImageKeys {
-            ImageCache.shared.cache.removeObject(forKey: key as AnyObject)
-            if let path = filepath(forKey: key) {
-                do {
-                    try fileManager.removeItem(atPath: path)
-                } catch {
-//                    ALog("Unable to delete item at \(path): \(error)", level: .error)
-                }
-            }
-        }
-        ImageCache.shared.myImageKeys = []
     }
 }
 
@@ -119,4 +122,17 @@ public struct ImageCache {
  static func save(_ image: UIImage, forGiftID giftID: String, path: String) {
  save(image, forKey: key(forGiftID: giftID, path: path))
  }
+ 
+ fileprivate static func key(forUsername username: String, size: CGSize) -> String {
+ return username + "-" + String(describing: size.width) + "-" + String(describing: size.height)
+ }
+
+ fileprivate static func key(forFile file: String, folder: String) -> String {
+ return file + "-" + folder
+ }
+
+ fileprivate static func key(forGiftID giftID: String, path: String) -> String {
+ return giftID + "-" + path
+ }
+
 */
