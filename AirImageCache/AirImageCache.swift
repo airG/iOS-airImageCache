@@ -9,20 +9,19 @@
 import Foundation
 import airGiOSTools
 
-/// ImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
-/// Uses an NSCache, which operates on a
+/// AirImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
 public struct AirImageCache {
     //MARK: Interface
     /// Checks all cache locations for a UIImage matching the `key`.
     ///
     /// - Parameter key: Unique identifier for an image.
     /// - Returns: UIImage if it exists, otherwise nil.
-    public static func image(forKey key: String) -> UIImage? {
-        if let image = inMemoryImage(forKey: key) {
+    public static func image(for key: String) -> UIImage? {
+        if let image = inMemoryImage(for: key) {
             Log("Got image for \(key) from in-memory cache", level: .verbose)
             return image
-        } else if let image = fileSystemImage(forKey: key) {
-            inMemory(save: image, forKey: key) // If the image is in the filesystem but not NSCache, should add it for future retrievals
+        } else if let image = fileSystemImage(for: key) {
+            inMemory(save: image, for: key) // If the image is in the filesystem but not NSCache, should add it for future retrievals
             Log("Got image for \(key) from file system", level: .verbose)
             return image
         } else {
@@ -36,9 +35,9 @@ public struct AirImageCache {
     /// - Parameters:
     ///   - image: UIImage to save to the in memory cache and filesystem.
     ///   - key: Unique identifier for an image.
-    public static func save(_ image: UIImage, forKey key: String) {
-        inMemory(save: image, forKey: key)
-        fileSystem(save: image, forKey: key)
+    public static func save(_ image: UIImage, for key: String) -> Void {
+        inMemory(save: image, for: key)
+        fileSystem(save: image, for: key)
     }
 
     //MARK: Properties
@@ -58,7 +57,7 @@ public struct AirImageCache {
     }
 
     //MARK:- Retrieving
-    fileprivate static func inMemoryImage(forKey key: String) -> UIImage? {
+    fileprivate static func inMemoryImage(for key: String) -> UIImage? {
         if let image = AirImageCache.shared.cache.object(forKey: key as NSString) as? UIImage {
             return image
         } else {
@@ -66,7 +65,7 @@ public struct AirImageCache {
         }
     }
 
-    fileprivate static func fileSystemImage(forKey key: String) -> UIImage? {
+    fileprivate static func fileSystemImage(for key: String) -> UIImage? {
         if let path = filepath(forKey: key),
             let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
             let image = UIImage(data: data) {
@@ -77,11 +76,11 @@ public struct AirImageCache {
     }
 
     //MARK:- Saving
-    fileprivate static func inMemory(save image: UIImage, forKey key: String) {
+    fileprivate static func inMemory(save image: UIImage, for key: String) {
         AirImageCache.shared.cache.setObject(image, forKey: key as AnyObject)
     }
 
-    @discardableResult fileprivate static func fileSystem(save image: UIImage, forKey key: String) -> Bool {
+    @discardableResult fileprivate static func fileSystem(save image: UIImage, for key: String) -> Bool {
         if let jpeg = UIImageJPEGRepresentation(image, 1.0), let path = filepath(forKey: key) {
             do {
                 try jpeg.write(to: URL(fileURLWithPath: path), options: [.atomic])
