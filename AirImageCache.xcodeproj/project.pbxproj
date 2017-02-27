@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		741484001E2E9506008C4800 /* AirImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 741483FE1E2E9506008C4800 /* AirImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		741484071E2E951A008C4800 /* AirImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741484061E2E951A008C4800 /* AirImageCache.swift */; };
-		74C14D031E2E982100E1AC97 /* airGiOSTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C14D021E2E982100E1AC97 /* airGiOSTools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,7 +16,6 @@
 		741483FE1E2E9506008C4800 /* AirImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirImageCache.h; sourceTree = "<group>"; };
 		741483FF1E2E9506008C4800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		741484061E2E951A008C4800 /* AirImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirImageCache.swift; sourceTree = "<group>"; };
-		74C14D021E2E982100E1AC97 /* airGiOSTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = airGiOSTools.framework; path = Carthage/Build/iOS/airGiOSTools.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,7 +23,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74C14D031E2E982100E1AC97 /* airGiOSTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,7 +34,6 @@
 			children = (
 				741483FD1E2E9506008C4800 /* AirImageCache */,
 				741483FC1E2E9506008C4800 /* Products */,
-				74C14CFE1E2E979900E1AC97 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +53,6 @@
 				741483FF1E2E9506008C4800 /* Info.plist */,
 			);
 			path = AirImageCache;
-			sourceTree = "<group>";
-		};
-		74C14CFE1E2E979900E1AC97 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				74C14D021E2E982100E1AC97 /* airGiOSTools.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,7 +77,6 @@
 				741483F71E2E9506008C4800 /* Frameworks */,
 				741483F81E2E9506008C4800 /* Headers */,
 				741483F91E2E9506008C4800 /* Resources */,
-				74C14D011E2E97A600E1AC97 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -143,23 +130,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		74C14D011E2E97A600E1AC97 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/airGiOSTools.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		741483F61E2E9506008C4800 /* Sources */ = {

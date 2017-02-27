@@ -7,10 +7,11 @@
 //
 
 import Foundation
-import airGiOSTools
 
 /// AirImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
 public struct AirImageCache {
+    static var log: ((String)->Void)?
+
     //MARK: Interface
     /// Checks all cache locations for a UIImage matching the `key`.
     ///
@@ -18,14 +19,14 @@ public struct AirImageCache {
     /// - Returns: UIImage if it exists, otherwise nil.
     public static func image(for key: String) -> UIImage? {
         if let image = inMemoryImage(for: key) {
-            Log("Got image for \(key) from in-memory cache", level: .verbose)
+            print("Got image for \(key) from in-memory cache")
             return image
         } else if let image = fileSystemImage(for: key) {
             inMemory(save: image, for: key) // If the image is in the filesystem but not NSCache, should add it for future retrievals
-            Log("Got image for \(key) from file system", level: .verbose)
+            print("Got image for \(key) from file system")
             return image
         } else {
-            Log("No image for \(key) in ImageCache", level: .verbose)
+            print("No image for \(key) in ImageCache")
             return nil
         }
     }
@@ -52,7 +53,7 @@ public struct AirImageCache {
     }
 
     fileprivate static func purgeNSCache() {
-        Log("Purging NSCache", level: .verbose)
+        print("Purging NSCache")
         AirImageCache.shared.cache.removeAllObjects()
     }
 
@@ -86,7 +87,7 @@ public struct AirImageCache {
                 try jpeg.write(to: URL(fileURLWithPath: path), options: [.atomic])
                 return true
             } catch {
-                Log("Error saving image to filesystem for \(key) - \(error)")
+                print("Error saving image to filesystem for \(key) - \(error)")
             }
         }
         return false
@@ -103,7 +104,7 @@ public struct AirImageCache {
 
 /*
  Example of Extension:
- 
+
  static func save(_ image: UIImage, forUsername username: String, size: CGSize, mine: Bool = false) {
  if username == Me.sharedInstance.username || mine {
  ImageCache.shared.myImageKeys.append(key(forUsername: username, size: size))
