@@ -11,7 +11,7 @@ import Foundation
 /// AirImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
 public struct AirImageCache {
     static var log: ((String)->Void)?
-    static var imageURLProvider: AirImageURLProvider?
+    static var imageURLProvider: AirImageURLProviding?
 
     //MARK: Interface
     /// Checks all cache locations for a UIImage matching the `key`.
@@ -117,12 +117,12 @@ public struct AirImageCache {
 }
 
 /// To enable the AirImageCache to get images from a server, provide AirImageCache with an object conforming to this protocol, and implement `url(for key: String) -> URL`
-protocol AirImageURLProvider {
+public protocol AirImageURLProviding {
     /// Creates the URL to get a specified image from
     ///
     /// - Parameter key: <#key description#>
     /// - Returns: <#return value description#>
-    func url(for key: String) -> URL
+    public func url(for key: String) -> URL
 }
 
 /*
