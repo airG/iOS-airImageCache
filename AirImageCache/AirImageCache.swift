@@ -38,7 +38,7 @@ public struct AirImageCache {
                         }
                         completion(nil)
                     }
-                })
+                }).resume()
             } else {
                 completion(nil)
             }
