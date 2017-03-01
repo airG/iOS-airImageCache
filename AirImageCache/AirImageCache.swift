@@ -11,23 +11,37 @@ import Foundation
 /// AirImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
 public struct AirImageCache {
     static var log: ((String)->Void)?
+    static var imageURLProvider: AirImageURLProvider?
 
     //MARK: Interface
     /// Checks all cache locations for a UIImage matching the `key`.
     ///
     /// - Parameter key: Unique identifier for an image.
     /// - Returns: UIImage if it exists, otherwise nil.
-    public static func image(for key: String) -> UIImage? {
+    public static func image(for key: String, completion: @escaping (UIImage?) -> Void) {
         if let image = inMemoryImage(for: key) {
             print("Got image for \(key) from in-memory cache")
-            return image
+            completion(image)
         } else if let image = fileSystemImage(for: key) {
             inMemory(save: image, for: key) // If the image is in the filesystem but not NSCache, should add it for future retrievals
             print("Got image for \(key) from file system")
-            return image
+            completion(image)
         } else {
-            print("No image for \(key) in ImageCache")
-            return nil
+            //Download it
+            if let url = imageURLProvider?.url(for: key) {
+                URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                    if let data = data, let image = UIImage(data: data) {
+                        completion(image)
+                    } else {
+                        if let error = error {
+                            print("Error downloading image for key \(key): \(error)")
+                        }
+                        completion(nil)
+                    }
+                })
+            } else {
+                completion(nil)
+            }
         }
     }
 
@@ -100,6 +114,15 @@ public struct AirImageCache {
         }
         return nil
     }
+}
+
+/// To enable the AirImageCache to get images from a server, provide AirImageCache with an object conforming to this protocol, and implement `url(for key: String) -> URL`
+protocol AirImageURLProvider {
+    /// Creates the URL to get a specified image from
+    ///
+    /// - Parameter key: <#key description#>
+    /// - Returns: <#return value description#>
+    func url(for key: String) -> URL
 }
 
 /*
