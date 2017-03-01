@@ -17,8 +17,9 @@ public struct AirImageCache {
     /// Checks all cache locations for a UIImage matching the `key`.
     ///
     /// - Parameter key: Unique identifier for an image.
-    /// - Returns: UIImage if it exists, otherwise nil.
-    public static func image(for key: String, completion: @escaping (UIImage?) -> Void) {
+    /// - Parameter completion: Function that executes when the image is found, or the imagecache gives up looking. Dispatches to main thread so safe for UI.
+    /// - Returns: Optional URLSessionDataTask, if you want to keep track and cancel early.
+    @discardableResult public static func image(for key: String, completion: @escaping (UIImage?) -> Void) -> URLSessionDataTask? {
         let dispatchCompletionOnMain: (UIImage?) -> Void = { image in
             DispatchQueue.main.async {
                 completion(image)
@@ -35,7 +36,7 @@ public struct AirImageCache {
         } else {
             //Download it
             if let imageURLProvider = imageURLProvider, let url = imageURLProvider.url(for: key) {
-                URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                let dataTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                     if let data = data, let image = UIImage(data: data) {
                         dispatchCompletionOnMain(image)
                     } else {
@@ -44,11 +45,16 @@ public struct AirImageCache {
                         }
                         dispatchCompletionOnMain(nil)
                     }
-                }).resume()
+                })
+                dataTask.resume()
+                return dataTask
+
             } else {
                 dispatchCompletionOnMain(nil)
             }
         }
+
+        return nil
     }
 
     /// Saves a provided image into the cache.
