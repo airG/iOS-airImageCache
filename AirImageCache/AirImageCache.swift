@@ -19,28 +19,34 @@ public struct AirImageCache {
     /// - Parameter key: Unique identifier for an image.
     /// - Returns: UIImage if it exists, otherwise nil.
     public static func image(for key: String, completion: @escaping (UIImage?) -> Void) {
+        let dispatchCompletionOnMain: (UIImage?) -> Void = { image in
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }
+
         if let image = inMemoryImage(for: key) {
             print("Got image for \(key) from in-memory cache")
-            completion(image)
+            dispatchCompletionOnMain(image)
         } else if let image = fileSystemImage(for: key) {
             inMemory(save: image, for: key) // If the image is in the filesystem but not NSCache, should add it for future retrievals
             print("Got image for \(key) from file system")
-            completion(image)
+            dispatchCompletionOnMain(image)
         } else {
             //Download it
             if let imageURLProvider = imageURLProvider, let url = imageURLProvider.url(for: key) {
                 URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                     if let data = data, let image = UIImage(data: data) {
-                        completion(image)
+                        dispatchCompletionOnMain(image)
                     } else {
                         if let error = error {
                             print("Error downloading image for key \(key): \(error)")
                         }
-                        completion(nil)
+                        dispatchCompletionOnMain(nil)
                     }
                 }).resume()
             } else {
-                completion(nil)
+                dispatchCompletionOnMain(nil)
             }
         }
     }
