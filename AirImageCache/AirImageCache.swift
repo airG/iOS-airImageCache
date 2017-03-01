@@ -122,7 +122,7 @@ public protocol AirImageURLProviding {
     ///
     /// - Parameter key: <#key description#>
     /// - Returns: <#return value description#>
-    public func url(for key: String) -> URL
+    func url(for key: String) -> URL
 }
 
 /*
