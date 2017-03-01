@@ -40,7 +40,7 @@ public struct AirImageCache {
                     if let data = data, let image = UIImage(data: data) {
                         dispatchCompletionOnMain(image)
                     } else {
-                        if let error = error {
+                        if let error = error, (error as NSError).code != -999 { // Only log an error if the operation wasn't cancelled
                             print("Error downloading image for key \(key): \(error)")
                         }
                         dispatchCompletionOnMain(nil)
