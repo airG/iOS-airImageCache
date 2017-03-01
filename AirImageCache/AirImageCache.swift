@@ -10,8 +10,8 @@ import Foundation
 
 /// AirImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
 public struct AirImageCache {
-    static var log: ((String)->Void)?
-    static var imageURLProvider: AirImageURLProviding?
+    public static var log: ((String)->Void)?
+    public static var imageURLProvider: AirImageURLProviding?
 
     //MARK: Interface
     /// Checks all cache locations for a UIImage matching the `key`.
@@ -28,7 +28,7 @@ public struct AirImageCache {
             completion(image)
         } else {
             //Download it
-            if let url = imageURLProvider?.url(for: key) {
+            if let imageURLProvider = imageURLProvider, let url = imageURLProvider.url(for: key) {
                 URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                     if let data = data, let image = UIImage(data: data) {
                         completion(image)
@@ -122,7 +122,7 @@ public protocol AirImageURLProviding {
     ///
     /// - Parameter key: <#key description#>
     /// - Returns: <#return value description#>
-    func url(for key: String) -> URL
+    func url(for key: String) -> URL?
 }
 
 /*
