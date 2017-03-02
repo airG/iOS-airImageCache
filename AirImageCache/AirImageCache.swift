@@ -45,6 +45,8 @@ public struct AirImageCache {
             if let imageURLProvider = imageURLProvider, let url = imageURLProvider.url(for: key) {
                 let dataTask = urlSession.dataTask(with: url, completionHandler: { (data, response, error) in
                     if let data = data, let image = UIImage(data: data) {
+                        inMemory(save: image, for: key)
+                        fileSystem(save: image, for: key)
                         dispatchCompletionOnMain(image)
                     } else {
                         if let error = error, (error as NSError).code != -999 { // Only log an error if the operation wasn't cancelled
