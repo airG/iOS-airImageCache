@@ -15,7 +15,7 @@ public struct AirImageCache {
 
     fileprivate static var urlSession: URLSession = createUrlSession()
     fileprivate static func createUrlSession() -> URLSession {
-        let config = URLSessionConfiguration.background(withIdentifier: "AirImageCache")
+        let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         return session
     }
