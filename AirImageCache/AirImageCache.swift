@@ -13,6 +13,13 @@ public struct AirImageCache {
     public static var log: ((String)->Void)?
     public static var imageURLProvider: AirImageURLProviding?
 
+    fileprivate static var urlSession: URLSession = createUrlSession()
+    fileprivate static func createUrlSession() -> URLSession {
+        let config = URLSessionConfiguration.background(withIdentifier: "AirImageCache")
+        let session = URLSession(configuration: config)
+        return session
+    }
+
     //MARK: Interface
     /// Checks all cache locations for a UIImage matching the `key`.
     ///
@@ -36,7 +43,7 @@ public struct AirImageCache {
         } else {
             //Download it
             if let imageURLProvider = imageURLProvider, let url = imageURLProvider.url(for: key) {
-                let dataTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                let dataTask = urlSession.dataTask(with: url, completionHandler: { (data, response, error) in
                     if let data = data, let image = UIImage(data: data) {
                         dispatchCompletionOnMain(image)
                     } else {
@@ -65,6 +72,12 @@ public struct AirImageCache {
     public static func save(_ image: UIImage, for key: String) -> Void {
         inMemory(save: image, for: key)
         fileSystem(save: image, for: key)
+    }
+
+    /// Cancels all in progress image downloads
+    public static func cancelAllDownloads() {
+        urlSession.invalidateAndCancel()
+        urlSession = createUrlSession() // Need to recreate the session
     }
 
     //MARK: Properties
@@ -132,9 +145,36 @@ public struct AirImageCache {
 public protocol AirImageURLProviding {
     /// Creates the URL to get a specified image from
     ///
-    /// - Parameter key: <#key description#>
-    /// - Returns: <#return value description#>
+    /// - Parameter key:
+    /// - Returns:
     func url(for key: String) -> URL?
+}
+
+private var imageTaskKey: Void?
+public extension UIImageView {
+    /// Convenience function to set the image on a `UIImageView` from a `key`.
+    ///
+    /// - Parameter key:
+    public func setAirImage(for key: String) {
+        let task = AirImageCache.image(for: key) { image in
+            self.image = image
+        }
+        setImageTask(task)
+    }
+
+    /// Cancels the active image download, if there is one
+    public func cancelAirImageDownload() {
+        imageDataTask?.cancel()
+        setImageTask(nil)
+    }
+
+    fileprivate var imageDataTask: URLSessionDataTask? {
+        return objc_getAssociatedObject(self, &imageTaskKey) as? URLSessionDataTask
+    }
+
+    fileprivate func setImageTask(_ task: URLSessionDataTask?) {
+        objc_setAssociatedObject(self, &imageTaskKey, task, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
 }
 
 /*
