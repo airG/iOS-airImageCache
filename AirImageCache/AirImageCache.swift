@@ -137,7 +137,8 @@ public struct AirImageCache {
     //MARK:- Keys
     fileprivate static func filepath(forKey key: String) -> String? {
         if let cacheDirectory = cacheDirectory {
-            return "\(cacheDirectory)/\(key).jpg"
+            let safeKey = key.replacingOccurrences(of: "/", with: "-")
+            return "\(cacheDirectory)/\(safeKey).jpg"
         }
         return nil
     }
