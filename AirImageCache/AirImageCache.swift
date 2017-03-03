@@ -34,11 +34,11 @@ public struct AirImageCache {
         }
 
         if let image = inMemoryImage(for: key) {
-            print("Got image for \(key) from in-memory cache")
+            log?("Got image for \(key) from in-memory cache")
             dispatchCompletionOnMain(image)
         } else if let image = fileSystemImage(for: key) {
             inMemory(save: image, for: key) // If the image is in the filesystem but not NSCache, should add it for future retrievals
-            print("Got image for \(key) from file system")
+            log?("Got image for \(key) from file system")
             dispatchCompletionOnMain(image)
         } else {
             //Download it
@@ -50,7 +50,7 @@ public struct AirImageCache {
                         dispatchCompletionOnMain(image)
                     } else {
                         if let error = error, (error as NSError).code != -999 { // Only log an error if the operation wasn't cancelled
-                            print("Error downloading image for key \(key): \(error)")
+                            log?("Error downloading image for key \(key): \(error)")
                         }
                         dispatchCompletionOnMain(nil)
                     }
@@ -155,7 +155,7 @@ public protocol AirImageURLProviding {
 
 private var imageTaskKey: Void?
 public extension UIImageView {
-    /// Convenience function to set the image on a `UIImageView` from a `key`.
+    /// Convenience function to set the image on a `UIImageView` from a `key`. Stores the data task on self, call `cancelAirImageDownload` if you want to stop the download.
     ///
     /// - Parameter key:
     public func setAirImage(for key: String) {
