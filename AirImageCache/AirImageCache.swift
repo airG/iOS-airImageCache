@@ -108,8 +108,8 @@ public struct AirImageCache {
     }
 
     fileprivate static func fileSystemImage(for key: String) -> UIImage? {
-        if let path = filepath(forKey: key),
-            let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+        if let url = fileUrl(forKey: key),
+            let data = try? Data(contentsOf: url),
             let image = UIImage(data: data) {
             return image
         }
@@ -123,9 +123,9 @@ public struct AirImageCache {
     }
 
     @discardableResult fileprivate static func fileSystem(save image: UIImage, for key: String) -> Bool {
-        if let jpeg = UIImageJPEGRepresentation(image, 1.0), let path = filepath(forKey: key) {
+        if let jpeg = UIImageJPEGRepresentation(image, 1.0), let url = fileUrl(forKey: key) {
             do {
-                try jpeg.write(to: URL(fileURLWithPath: path), options: [.atomic])
+                try jpeg.write(to: url, options: [.atomic])
                 return true
             } catch {
                 print("Error saving image to filesystem for \(key) - \(error)")
@@ -135,10 +135,10 @@ public struct AirImageCache {
     }
 
     //MARK:- Keys
-    fileprivate static func filepath(forKey key: String) -> String? {
+    fileprivate static func fileUrl(forKey key: String) -> URL? {
         if let cacheDirectory = cacheDirectory {
             let safeKey = key.replacingOccurrences(of: "/", with: "-")
-            return cacheDirectory.appendingPathComponent("\(safeKey).jpg").absoluteString
+            return cacheDirectory.appendingPathComponent("\(safeKey).jpg", isDirectory: false)
         }
         return nil
     }
@@ -200,7 +200,7 @@ public extension UIImageView {
  static func save(_ image: UIImage, forGiftID giftID: String, path: String) {
  save(image, forKey: key(forGiftID: giftID, path: path))
  }
- 
+
  fileprivate static func key(forUsername username: String, size: CGSize) -> String {
  return username + "-" + String(describing: size.width) + "-" + String(describing: size.height)
  }
@@ -212,5 +212,5 @@ public extension UIImageView {
  fileprivate static func key(forGiftID giftID: String, path: String) -> String {
  return giftID + "-" + path
  }
-
-*/
+ 
+ */
