@@ -10,7 +10,11 @@ import Foundation
 
 /// AirImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
 public struct AirImageCache {
-    public static var log: ((String)->Void)?
+    enum Error: Swift.Error {
+        case AirImageCacheSaveError
+    }
+    
+    public static var log: ((_ message: String, _ file: String, _ function: String, _ line: Int) -> Void)?
     public static var imageURLProvider: AirImageURLProviding?
 
     fileprivate static var urlSession: URLSession = createUrlSession()
@@ -26,7 +30,7 @@ public struct AirImageCache {
     /// - Parameter key: Unique identifier for an image.
     /// - Parameter completion: Function that executes when the image is found, or the imagecache gives up looking. Dispatches to main thread so safe for UI.
     /// - Returns: Optional URLSessionDataTask, if you want to keep track and cancel early.
-    @discardableResult public static func image(for key: String, completion: @escaping (UIImage?) -> Void) -> URLSessionDataTask? {
+    @discardableResult public static func image(for key: String, file: String = #file, function: String = #function, line: Int = #line, completion: @escaping (UIImage?) -> Void) -> URLSessionDataTask? {
         let dispatchCompletionOnMain: (UIImage?) -> Void = { image in
             DispatchQueue.main.async {
                 completion(image)
@@ -34,23 +38,22 @@ public struct AirImageCache {
         }
 
         if let image = inMemoryImage(for: key) {
-            log?("Got image for \(key) from in-memory cache")
+            log?("Got image for \(key) from in-memory cache", file, function, line)
             dispatchCompletionOnMain(image)
         } else if let image = fileSystemImage(for: key) {
             inMemory(save: image, for: key) // If the image is in the filesystem but not NSCache, should add it for future retrievals
-            log?("Got image for \(key) from file system")
+            log?("Got image for \(key) from file system", file, function, line)
             dispatchCompletionOnMain(image)
         } else {
             //Download it
             if let imageURLProvider = imageURLProvider, let url = imageURLProvider.url(for: key) {
                 let dataTask = urlSession.dataTask(with: url, completionHandler: { (data, response, error) in
                     if let data = data, let image = UIImage(data: data) {
-                        inMemory(save: image, for: key)
-                        fileSystem(save: image, for: key)
+                        save(image, for: key)
                         dispatchCompletionOnMain(image)
                     } else {
                         if let error = error, (error as NSError).code != -999 { // Only log an error if the operation wasn't cancelled
-                            log?("Error downloading image for key \(key): \(error)")
+                            log?("Error downloading image for key \(key): \(error)", file, function, line)
                         }
                         dispatchCompletionOnMain(nil)
                     }
@@ -71,9 +74,13 @@ public struct AirImageCache {
     /// - Parameters:
     ///   - image: UIImage to save to the in memory cache and filesystem.
     ///   - key: Unique identifier for an image.
-    public static func save(_ image: UIImage, for key: String) -> Void {
+    public static func save(_ image: UIImage, for key: String, file: String = #file, function: String = #function, line: Int = #line) -> Void {
         inMemory(save: image, for: key)
-        fileSystem(save: image, for: key)
+        do {
+            try fileSystem(save: image, for: key)
+        } catch {
+            log?("Error saving image for key \(key): \(error)", file, function, line)
+        }
     }
 
     /// Cancels all in progress image downloads
@@ -93,8 +100,8 @@ public struct AirImageCache {
         }
     }
 
-    fileprivate static func purgeNSCache() {
-        print("Purging NSCache")
+    fileprivate static func purgeNSCache(file: String = #file, function: String = #function, line: Int = #line) {
+        log?("Purging NSCache", file, function, line)
         AirImageCache.shared.cache.removeAllObjects()
     }
 
@@ -122,16 +129,16 @@ public struct AirImageCache {
         AirImageCache.shared.cache.setObject(image, forKey: key as AnyObject)
     }
 
-    @discardableResult fileprivate static func fileSystem(save image: UIImage, for key: String) -> Bool {
+    fileprivate static func fileSystem(save image: UIImage, for key: String, file: String = #file, function: String = #function, line: Int = #line) throws {
         if let jpeg = UIImageJPEGRepresentation(image, 1.0), let url = fileUrl(forKey: key) {
             do {
                 try jpeg.write(to: url, options: [.atomic])
-                return true
             } catch {
-                print("Error saving image to filesystem for \(key) - \(error)")
+                log?("Error saving image to filesystem for \(key) - \(error)", file, function, line)
+                throw Error.AirImageCacheSaveError
             }
         }
-        return false
+        throw Error.AirImageCacheSaveError
     }
 
     //MARK:- Keys
