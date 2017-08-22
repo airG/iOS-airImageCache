@@ -165,8 +165,8 @@ public extension UIImageView {
     /// Convenience function to set the image on a `UIImageView` from a `key`. Stores the data task on self, call `cancelAirImageDownload` if you want to stop the download.
     ///
     /// - Parameter key:
-    public func setAirImage(for key: String) {
-        let task = AirImageCache.image(for: key) { image in
+    public func setAirImage(for key: String, file: String = #file, function: String = #function, line: Int = #line) {
+        let task = AirImageCache.image(for: key, file: file, function: function, line: line) { image in
             self.image = image
         }
         setImageTask(task)
