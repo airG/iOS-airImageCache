@@ -1,0 +1,19 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/stevent/airG/GitHub repos/airimagecache-ios/AirImageCache/AirImageCache.swift",
+      "line": 17,
+      "symbol": "AirImageCache.log",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/stevent/airG/GitHub repos/airimagecache-ios/AirImageCache/AirImageCache.swift",
+      "line": 18,
+      "symbol": "AirImageCache.imageURLProvider",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/stevent/airG/GitHub repos/airimagecache-ios"
+}

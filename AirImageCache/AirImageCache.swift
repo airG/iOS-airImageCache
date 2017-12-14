@@ -10,11 +10,16 @@ import Foundation
 
 /// AirImageCache saves and returns images from an NSCache stored in memory and in the `/Caches` directory.
 public struct AirImageCache {
+    /// Contains errors from AirImageCache
     enum Error: Swift.Error {
+        /// - AirImageCacheSaveError: Couldn't save image to cache
         case AirImageCacheSaveError
     }
     
+    /// If provided, AirImageCache will log messages to this function
     public static var log: ((_ message: String, _ file: String, _ function: String, _ line: Int) -> Void)?
+    
+    /// An object conforming to `AirImageURLProviding` will allow the AirImageCache to download images from the url from the provider
     public static var imageURLProvider: AirImageURLProviding?
 
     fileprivate static var urlSession: URLSession = createUrlSession()
