@@ -56,19 +56,26 @@
         <section>
           <section class="section">
             
-            <p>An extremely simple UIImage cache manager backed by both an in-memory NSCache and file system /Caches folder.</p>
+            <h1 id='airimagecache' class='heading'>airImageCache</h1>
 
-<p><strong>Installation</strong></p>
+<p><a href="https://airg.github.io/iOS-airImageCache/"><img src="https://github.com/airG/iOS-airImageCache/blob/master/docs/badge.svg" alt="Documentation"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a></p>
 
-<p>Using Carthage, add this line to your Cartfile:</p>
+<p>An extremely simple UIImage cache manager backed by both an in-memory NSCache and file system /Caches folder.</p>
+<h2 id='how-to-use-airimagecache' class='heading'>How to use airImageCache</h2>
 
-<p><code>git &quot;git@gitlab.airg.us:airg-unit/airimagecache-ios.git&quot;</code></p>
+<p>Installation is best managed using Carthage. Add <code>github &quot;airg/iOS-airImageCache&quot;</code> to your cartfile and run <code>carthage install</code>, see <a href="https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos">Carthage Installation Guide</a>.</p>
+<h2 id='documentation' class='heading'>Documentation</h2>
 
-<p>Then run:</p>
+<p>Check out the <a href="https://airg.github.io/iOS-airImageCache/">documentation</a>. All calls should also be documented in the generated Swift interface.</p>
+<h2 id='how-it-39-s-made' class='heading'>How it&rsquo;s made</h2>
 
-<p><code>carthage update --platform iOS --no-use-binaries</code> OR</p>
+<p>airImageCache is currently written in Swift 4 with Xcode 9.2.</p>
 
-<p><code>carthage update airimagecache-ios --platform iOS --no-use-binaries</code></p>
+<p>Documentation is generated using <a href="https://github.com/realm/jazzy">Jazzy</a>, a very useful tool for generating pretty docs.</p>
+<h2 id='contributing' class='heading'>Contributing</h2>
+
+<p>Before opening a pull request, be sure to run <code>jazzy</code> to regenerate the docs.</p>
 
           </section>
         </section>
