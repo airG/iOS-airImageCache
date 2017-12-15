@@ -1,6 +1,6 @@
 # airImageCache
 
-[![Documentation](https://github.com/airG/iOS-airImageCache/blob/master/docs/badge.svg)](https://airg.github.io/iOS-airImageCache/)
+[![Documentation](https://raw.githubusercontent.com/airG/iOS-airImageCache/master/docs/badge.svg?sanitize=true)](https://airg.github.io/iOS-airImageCache/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 An extremely simple UIImage cache manager backed by both an in-memory NSCache and file system /Caches folder.
