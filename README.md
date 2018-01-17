@@ -5,11 +5,18 @@
 
 An extremely simple UIImage cache manager backed by both an in-memory NSCache and file system /Caches folder.
 
+## Installation
+Installation is best managed using Carthage. Add `github "airg/iOS-airImageCache"` to your cartfile and run `carthage install`, see [Carthage Installation Guide](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos).
+
+You can also use Cocoapods to install. Add `pod 'airImageCache'` to your podfile.
 
 ## How to use airImageCache
 
-Installation is best managed using Carthage. Add `github "airg/iOS-airImageCache"` to your cartfile and run `carthage install`, see [Carthage Installation Guide](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos).
+On `AirImageCache` call `image(for: key, completion: (UIImage?) -> Void)`. There is no guarantee how long it will take to have the completion called, since you may be loading the image out of memory, off the disk or from the server. This returns a `URLSessionDataTask?`, which can be cancelled if you want to stop the server load.
 
+To load images off a server, provide an object conforming to `AirImageURLProviding`, which only need to implement `func url(for key: String) -> URL?`.
+
+This framework also provides an extension on `UIImageView`, to conveniently load and set the image, or cancel the download task associated with the image view.
 
 ## Documentation
 
